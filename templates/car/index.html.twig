@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cars{% endblock %}
+
+{% block content %}
+<div class="container mt-4 justify-content-center">
+        <h1> Cars</h1>
+    <div class="count">
+        <small>Il y a {{ cars.getTotalItemCount }} voitures</small>
+    </div>
+    <table class="tableCars mt-4">
+        <thead>
+            <tr>
+                <th scope="col">Numero</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Nombre de sièges</th>
+                <th scope="col">Nombre de portes</th>
+                <th scope="col">Prix (en €)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in cars %}
+                <tr class="tableCarsBody mt-4">
+                    <th scope="row">{{ car.id }}</th>
+                    <td>{{ car.name }}</td>
+                    <td>{{ car.nbSeats }}</td>
+                    <td>{{ car.nbDoors }}</td>
+                    <td> {{ car.cost }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <br><div class="navigation d-flex justify-content-center">
+        {{ knp_pagination_render(cars) }}
+</div>
+{% endblock %}
